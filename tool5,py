@@ -1,0 +1,16 @@
+def advanced_scan(self):
+    """Kengaytirilgan zaifliklar skaneri"""
+    scans = {
+        "SSH Bruteforce": self.check_ssh_weakness,
+        "FTP Anonymous": self.check_ftp_anonymous,
+        "SMB Vulnerabilities": self.check_smb_vulns,
+        "Web Shell Detection": self.check_web_shells,
+        "CVE Database Check": self.check_cve_database
+    }
+    
+    for scan_name, scan_func in scans.items():
+        self.log_message(f"\n🔍 {scan_name}...")
+        try:
+            scan_func()
+        except Exception as e:
+            self.log_message(f"   ❌ Xatolik: {e}")
